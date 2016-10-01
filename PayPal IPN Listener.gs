@@ -10,18 +10,16 @@ function doPost(e) {
   var paypalURL = strSandbox
   
   if (isProduction)  paypalURL = strLive;
-  
   var payload = "cmd=_notify-validate&" + e.postData.contents;
   
-  //Handshake with PayPal - send acknowledgement and get VERIFIED or INVALID response
+  
   var options =
-   {
-     "method" : "post",
-     "payload" : payload
-   };
+    {
+      "method" : "post",
+      "payload" : payload
+    };
   
-  
-  var resp = UrlFetchApp.fetch(urlHandshake, params);
+  var resp = UrlFetchApp.fetch(paypalURL, options);
   
   
 }

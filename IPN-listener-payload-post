@@ -1,0 +1,25 @@
+function doPost(e) {
+  
+  var isProduction = false;
+  
+  //if(typeof e == 'undefined')
+    //return ContentService.createTextOutput(JSON.stringify(e.parameter));
+  
+  var strSandbox  = "https://www.sandbox.paypal.com/cgi-bin/webscr"
+  var strLive = "https://www.paypal.com/cgi-bin/webscr"
+  var paypalURL = strSandbox
+  
+  if (isProduction)  paypalURL = strLive;
+  var payload = paypalURL + "?cmd=_notify-validate&" + e.postData.contents;
+  
+  var options =
+    {
+      "method" : "post",
+      "payload" : payload,
+      "escaping" : false
+    };
+
+  var resp = UrlFetchApp.fetch(payload, options);
+  
+  
+}

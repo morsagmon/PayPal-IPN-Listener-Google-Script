@@ -20,6 +20,4 @@ function doPost(e) {
     };
   
   var resp = UrlFetchApp.fetch(paypalURL, options);
-  
-  
 }

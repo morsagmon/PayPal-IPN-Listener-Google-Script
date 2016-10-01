@@ -11,11 +11,15 @@ function doPost(e) {
   
   if (isProduction)  paypalURL = strLive;
   
+  var payload = "cmd=_notify-validate&" + e.postData.contents;
+  
   //Handshake with PayPal - send acknowledgement and get VERIFIED or INVALID response
-  var params = {
-          method: "post"
-        }
-  var urlHandshake = paypalURL + "?cmd=_notify-validate&" + e.postData.contents;
+  var options =
+   {
+     "method" : "post",
+     "payload" : payload
+   };
+  
   
   var resp = UrlFetchApp.fetch(urlHandshake, params);
   
